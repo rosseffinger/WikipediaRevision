@@ -26,6 +26,7 @@ public class DataParser {
     }
 
     public DataParser() {
+        this.DataParser();
 
     }
 }
