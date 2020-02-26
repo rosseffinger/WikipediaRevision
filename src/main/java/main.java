@@ -10,6 +10,7 @@ public class main {
         String Json = new WikiPage(userInput).getJsonString();
         System.out.println(Json);
         //DataParser test2 = new DataParser().revisionsParse();
+        //String test2 = new DataParser().revisionsParse(Json);
 
 
 

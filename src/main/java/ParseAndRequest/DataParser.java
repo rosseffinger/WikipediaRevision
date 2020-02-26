@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DataParser{
-    public JsonArray revisionsParse(InputStream input) {
+    public String revisionsParse(InputStream input) {
         JsonParser parser = new JsonParser();
         Reader reader = new InputStreamReader(input);
         JsonElement rootElement = parser.parse(reader);
@@ -26,8 +26,7 @@ public class DataParser{
             JsonObject entryObject = entry.getValue().getAsJsonObject();
             revisionsArray = entryObject.getAsJsonArray("revisions");
         }
-
-        return revisionsArray;
+        return null;
     }
 
     List<UserAndTime> createRevisionsList(JsonArray revisionsArray){
