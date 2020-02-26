@@ -6,22 +6,22 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class WikiPage {
-    public WikiPage(String input) throws IOException {
+    private String input;
 
-        try {
-            URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=" +
-                    input + "Soup&rvprop=timestamp|user&rvlimit=30&redirects");
-            java.net.URLConnection connection = url.openConnection();
-            connection.setRequestProperty("User-Agent",
-                    "Revision Tracker/0.1 (http://www.cs.bsu.edu/; yourusername@bsu.edu)");
-            InputStream in = connection.getInputStream();
-            Scanner scanner = new Scanner(in);
-            String result = scanner.nextLine();
-        }catch(IOException r){
-            throw new RuntimeException();
-        }
+    public WikiPage(String input) {
+        this.input = input;
+    }
 
+    public String getJsonString() throws IOException {
 
-
+        URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles=" +
+                input + "rvprop=timestamp|user&rvlimit=30&redirects");
+        java.net.URLConnection connection = url.openConnection();
+        connection.setRequestProperty("User-Agent",
+                "Revision Tracker/0.1 (http://www.cs.bsu.edu/; rdeffinger@bsu.edu)");
+        InputStream in = connection.getInputStream();
+        Scanner scanner = new Scanner(in);
+        String result = scanner.nextLine();
+        return result;
     }
 }

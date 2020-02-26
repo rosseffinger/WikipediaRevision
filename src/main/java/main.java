@@ -7,9 +7,10 @@ public class main {
         Scanner input = new Scanner(System.in);
         System.out.println("What website do you need");
         String userInput = input.nextLine();
-        WikiPage test = new WikiPage(userInput);
+        String Json = new WikiPage(userInput).getJsonString();
+        System.out.println(Json);
+        //DataParser test2 = new DataParser().revisionsParse();
 
-        System.out.println(test);
 
 
 
