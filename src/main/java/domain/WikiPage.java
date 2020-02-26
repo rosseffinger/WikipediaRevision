@@ -1,26 +1,26 @@
 package domain;
 
-import jdk.internal.util.xml.impl.Input;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Scanner;
 
 public class WikiPage {
-    public WikiPage(Scanner input) throws IOException {
-        URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exsentences=1&exintro=&explaintext=&exsectionformat=plain&titles=" + input;
-        InputStream is = con.getInputStream
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream())) {
-            String line = null;
-            while(line = br.readline())
+    InputStream input;
 
-        }
-
-
+    public WikiPage(String scanner) {
+        this.input = input;
     }
 
+    public InputStream WikiPage(String input) throws IOException {
+        try {
+            URL url = new URL("https://en.wikipedia.org/w/api.php?action=query&format=json&prop=revisions&titles= " + input+
+                    "Soup&rvprop=timestamp|user&rvlimit=30&redirects");
+            java.net.URLConnection connection = url.openConnection();
+            connection.setRequestProperty("User-Agent",
+                    "Revision Tracker/0.1 (http://www.cs.bsu.edu/; rdeffinger@bsu.edu)");
+            return connection.getInputStream();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
 }
-
