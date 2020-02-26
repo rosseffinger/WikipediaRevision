@@ -8,7 +8,9 @@ public class main {
         System.out.println("What website do you need");
         String userInput = input.nextLine();
         WikiPage test = new WikiPage(userInput);
+
         System.out.println(test);
+
 
 
 
