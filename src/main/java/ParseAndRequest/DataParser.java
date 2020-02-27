@@ -4,16 +4,27 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import domain.UserAndTime;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class DataParser{
+    public JsonArray parseData(InputStream input){
+        Reader reader = new InputStreamReader(input);
+        JsonElement element = JsonParser.parseReader(reader);
+        JsonObject object = element.getAsJsonObject();
+        if(!object.has("batchcomplete")){
+            JsonObject query = object.getAsJsonObject("query");
+            JsonObject pages = query.getAsJsonObject("pages");
+            JsonObject pageIdNumberObject = pages.entrySet().iterator().next().getValue().getAsJsonObject();
+            return pageIdNumberObject.getAsJsonArray("revisions");
+        }else{
+            return null;
+        }
+    }
+
+    /*
     public String revisionsParse(InputStream input) {
         JsonParser parser = new JsonParser();
         Reader reader = new InputStreamReader(input);
@@ -63,7 +74,7 @@ public class DataParser{
         return rootObject.getAsJsonObject("query").getAsJsonArray("redirects");
     }
 
-    /*List<Redirect> createRedirectsList(JsonArray redirectsArray) {
+    List<Redirect> createRedirectsList(JsonArray redirectsArray) {
         List<Redirect> redirectsList = new ArrayList<>();
         String from = null;
         String to = null;
