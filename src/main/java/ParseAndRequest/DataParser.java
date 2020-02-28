@@ -4,66 +4,28 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import domain.redirect;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-public class DataParser{
-    public JsonArray parseData(InputStream input){
+public class DataParser {
+    public JsonObject parseData(InputStream input) {
         Reader reader = new InputStreamReader(input);
         JsonElement element = JsonParser.parseReader(reader);
         JsonObject object = element.getAsJsonObject();
-        if(!object.has("batchcomplete")){
+        if (!object.has("batchcomplete")) {
             JsonObject query = object.getAsJsonObject("query");
-            JsonObject pages = query.getAsJsonObject("pages");
-            JsonObject pageIdNumberObject = pages.entrySet().iterator().next().getValue().getAsJsonObject();
-            return pageIdNumberObject.getAsJsonArray("revisions");
-        }else{
+            return query;
+        } else {
             return null;
         }
+
     }
-
-    /*
-    public String revisionsParse(InputStream input) {
-        JsonParser parser = new JsonParser();
-        Reader reader = new InputStreamReader(input);
-        JsonElement rootElement = parser.parse(reader);
-
-        JsonObject rootObject = rootElement.getAsJsonObject();
-        JsonObject pages = rootObject.getAsJsonObject("query").getAsJsonObject("pages");
-        JsonArray revisionsArray = null;
-        for (Map.Entry<String, JsonElement> entry : pages.entrySet()) {
-            JsonObject entryObject = entry.getValue().getAsJsonObject();
-            revisionsArray = entryObject.getAsJsonArray("revisions");
-        }
-        return null;
-    }
-
-    List<UserAndTime> createRevisionsList(JsonArray revisionsArray){
-        List<UserAndTime> revisionsList = new ArrayList<UserAndTime>();
-        //ConvertLocalTime convertTime = new ConvertLocalTime();
-        String username = null;
-        String timestamp = null;
-
-        for(JsonElement rev : revisionsArray) {
-            JsonObject revObject = rev.getAsJsonObject();
-            for(Map.Entry<String, JsonElement> entry : revObject.entrySet()) {
-                String entryKey = entry.getKey();
-                JsonElement entryElement = entry.getValue();
-                if (entryKey.equals("user")) {
-                    username = entryElement.getAsString();
-                }
-               // else if (entryKey.equals("timestamp")) {
-                 //   timestamp = convertTime.convertLocalTime(entryElement.getAsString());
-                }
-            }
-
-            UserAndTime userandtime = new UserAndTime(username, timestamp);
-            revisionsList.add(userandtime);
-            return revisionsList;
-
-        }
 
     JsonArray redirectsParser(InputStream input) {
         JsonParser parser = new JsonParser();
@@ -74,27 +36,26 @@ public class DataParser{
         return rootObject.getAsJsonObject("query").getAsJsonArray("redirects");
     }
 
-    List<Redirect> createRedirectsList(JsonArray redirectsArray) {
-        List<Redirect> redirectsList = new ArrayList<>();
+    List<redirect> createRedirectsList(JsonArray redirectsArray) {
+        List<redirect> redirectsList = new ArrayList<>();
         String from = null;
         String to = null;
 
-        for(JsonElement red : redirectsArray) {
+        for (JsonElement red : redirectsArray) {
             JsonObject redirectObject = red.getAsJsonObject();
-            for(Map.Entry<String, JsonElement> entry : redirectObject.entrySet()) {
+            for (Map.Entry<String, JsonElement> entry : redirectObject.entrySet()) {
                 String entryKey = entry.getKey();
                 JsonElement entryElement = entry.getValue();
-                if(entryKey.equals("from")) {
+                if (entryKey.equals("from")) {
                     from = entryElement.getAsString();
-                }
-                else if(entryKey.equals("to")) {
+                } else if (entryKey.equals("to")) {
                     to = entryElement.getAsString();
                 }
             }
 
-            Redirect redirect = new Redirect(from, to);
+            redirect redirect = new redirect(from, to);
             redirectsList.add(redirect);
         }
         return redirectsList;
-    }*/
+    }
 }
