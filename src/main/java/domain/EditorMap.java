@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class EditorMapMaker {
+public class EditorMap {
     public Map<String,Integer> makeEditorMap(JsonArray revisionsArray){
         Map<String, Integer> editors = new LinkedHashMap<>();
         for (int i = 0; i < revisionsArray.size(); i++) {

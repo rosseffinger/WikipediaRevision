@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 
-public class EditorSorter {
+public class EditorSort {
     public StringBuilder sortEditors(JsonArray revisionsArray){
-        RevisionMapMaker revisionMapMaker = new RevisionMapMaker();
-        EditorMapMaker editorMapMaker = new EditorMapMaker();
+        RevisionMap revisionMapMaker = new RevisionMap();
+        EditorMap editorMapMaker = new EditorMap();
         Map<String,Instant> revisionMap = revisionMapMaker.makeRevisionMap(revisionsArray);
         Map<String,Integer> editorMap = editorMapMaker.makeEditorMap(revisionsArray);
 

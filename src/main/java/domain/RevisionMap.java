@@ -7,7 +7,7 @@ import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class RevisionMapMaker {
+public class RevisionMap {
     public Map<String, Instant> makeRevisionMap(JsonArray revisionsArray){
         Map<String, Instant> revisions = new LinkedHashMap<>();
         for(int i = 0; i < revisionsArray.size(); i++){

@@ -18,7 +18,6 @@ public class WikiPage {
             Scanner scanner = new Scanner(in);
         }else{
             in = null;
-            System.out.println("No connection");
         }
         return in;
     }

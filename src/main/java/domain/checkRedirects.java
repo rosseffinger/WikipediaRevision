@@ -3,7 +3,7 @@ package domain;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-public class RedirectChecker {
+public class checkRedirects {
     public String checkForRedirects(JsonObject query) {
         if (query.has("redirects")) {
             JsonArray array = query.getAsJsonArray("redirects");
