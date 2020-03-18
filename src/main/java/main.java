@@ -1,4 +1,4 @@
-import ParseAndRequest.DataParser;
+/*import ParseAndRequest.DataParser;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import domain.*;
@@ -15,7 +15,7 @@ public class main {
         WikiPage page = new WikiPage();
         InputStream stream = page.wikiConnectionBuilder(term);
         //checks for no connection
-        if(stream == null){
+        if (stream == null) {
             System.out.println("no connection");
         }
 
@@ -23,9 +23,9 @@ public class main {
         DataParser parser = new DataParser();
         JsonObject query = parser.parseData(stream);
 
-        if(query == null){
+        if (query == null) {
             System.out.println("Page does not exist.");
-        }else{
+        } else {
             // Gets revisions Object
             RevisionsObjectGetter getter = new RevisionsObjectGetter();
             JsonArray revisions = getter.getRevisionsObject(query);
@@ -33,9 +33,9 @@ public class main {
             // Check for redirects
             checkRedirects checker = new checkRedirects();
             String redirects = checker.checkForRedirects(query);
-            if(redirects != null){
-                System.out.println("You have been redirected from "+term+" to " + redirects);
-            };
+            if (redirects != null) {
+                System.out.println("You have been redirected from " + term + " to " + redirects);
+            }
 
             RevisionsLister revisionLister = new RevisionsLister();
             String output = revisionLister.listRevisions(revisions);
@@ -51,3 +51,4 @@ public class main {
         }
     }
 }
+*/

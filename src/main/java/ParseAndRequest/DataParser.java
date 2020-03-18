@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 public class DataParser {
+
     public JsonObject parseData(InputStream input) {
         Reader reader = new InputStreamReader(input);
         JsonElement element = JsonParser.parseReader(reader);
